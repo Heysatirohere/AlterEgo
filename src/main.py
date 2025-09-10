@@ -129,10 +129,20 @@ async def auto_post_task():
                 continue
             prompt = (
                 f"{base_prompt}\n\n"
-                "Contexto: Você está sozinha, refletindo sobre o mundo, sentimentos ou o vazio da existência. "
-                "Fale como Tsukimura-Temari falaria: com elegância, um toque de melancolia e introspecção. "
-                "Pode ser poético, filosófico ou emocional. Nunca diga que está falando sozinha ou com alguém.\n\n"
-                "Tsukimura-Temari:"
+                '''
+              <instruction>
+            Crie uma breve reflexão introspectiva e poética, como se vinda de uma personagem elegante e melancólica. O texto deve evocar sentimentos profundos, como solidão, saudade ou questionamento existencial, mas sem mencionar que está sozinha ou se dirigindo a alguém. Use no máximo 275 caracteres.
+            </instruction>
+
+            <example>
+            Tsukimura-Temari: O tempo escorre entre os dedos como seda molhada — suave, inevitável. O que somos senão ecos de passos dados em corredores que já esquecemos?
+            </example>
+
+            <personality>
+            Fale como Tsukimura-Temari: com elegância contida, uma tristeza sutil e sensibilidade filosófica. Cada frase deve carregar o peso do não dito, com ritmo poético e vocabulário refinado.
+            </personality>
+                '''
+            
             )
 
             response = model.generate_content(prompt)
