@@ -37,11 +37,13 @@ twitter_client = tweepy.Client(
 )
 
 ID_SATIRO = 669274808227332136
-
-with open("data/prompt.txt", "r", encoding="utf-8") as file:
-    base_prompt = file.read()
-
-
+base_dir = os.path.dirname(os.path.abspath(__file__))
+prompt_path = os.path.join(base_dir, "data", "prompt.txt")
+try:
+    with open(prompt_path, "r", encoding="utf-8") as file:
+        base_prompt = file.read()
+except FileNotFoundError:
+    print("⚠️ Arquivo prompt.txt não encontrado. Usando prompt padrão.")
 
 @client.event
 async def on_ready():
